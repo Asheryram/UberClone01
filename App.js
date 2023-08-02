@@ -1,11 +1,8 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Provider } from "react-redux";
 import { store } from "./store";
-import { s } from "react-native-wind";
 import MapScreen from "./src/screens/MapScreen";
 import MainScreen from "./src/screens/MainScreen";
 import OnBoardingScreen from "./src/screens/OnBoardingScreen";
