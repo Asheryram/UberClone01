@@ -1,20 +1,33 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Provider } from "react-redux";
+import { store } from "./store";
+import { s } from "react-native-wind";
+import MapScreen from "./src/screens/MapScreen";
+import MainScreen from "./src/screens/MainScreen";
+import OnBoardingScreen from "./src/screens/OnBoardingScreen";
+import DeliveryScreen from "./src/screens/DeliveryScreen";
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}
+          initialRouteName="OnboardingScreen"
+        >
+          <Stack.Screen name="OnboardingScreen" component={OnBoardingScreen} />
+          <Stack.Screen name="MainScreen" component={MainScreen} />
+          <Stack.Screen name="MapScreen" component={MapScreen} />
+          <Stack.Screen name="DeliveryScreen" component={DeliveryScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
