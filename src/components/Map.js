@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native'
+import {StyleSheet,View,TouchableOpacity,Text} from 'react-native'
 import React, { useEffect, useRef } from "react";
 import MapView, { Marker } from "react-native-maps";
 import { s } from "react-native-wind";
@@ -9,6 +9,10 @@ import {
   setTravelTimeInformation,
 } from "../../slices/navSlice";
 import MapViewDirections from "react-native-maps-directions";
+import {  useNavigation } from "@react-navigation/native";
+import RideCardScreen from '../screens/RideCardScreen';
+import BottomSheet from '@gorhom/bottom-sheet';
+
 const apiKey = process.env.EXPO_PUBLIC_API_KEY;
 
 const defaultMapRegion = {
@@ -23,6 +27,7 @@ const Map = () => {
   const destination = useSelector(selectDestination);
   const mapRef = useRef(null);
   const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   useEffect(() => {
     if (!origin || !destination) return;
@@ -61,6 +66,8 @@ const Map = () => {
   }, [origin, destination, apiKey]);
 
   return (
+    <View style={s`flex-1`}>
+
     <MapView
       ref={mapRef}
       style={s`flex-1`}
@@ -107,7 +114,16 @@ const Map = () => {
           identifier="destination"
         />
       )}
+     
     </MapView>
+    <View style ={[s`items-center justify-center   mb-3`,{position:"absolute"}]}>
+      <TouchableOpacity style={s`w-20 h-10 items-center justify-center  bg-white`}
+      onPress={()=>{ navigation.navigate('RideCardScreen')
+      }}>
+        <Text style ={s`text-xl`}>Confirm</Text>
+      </TouchableOpacity >
+      </View >
+    </View>
   );
 };
 export default Map;

@@ -7,6 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 import HomeScreen from "../screens/HomeScreen";
 import ServiceScreen from "../screens/ServiceScreen";
 import AccountScreen from "../screens/AccountScreen";
+import RideCardScreen from "../screens/RideCardScreen";
 
 const homeName = "Home";
 const serviceName = "Service";
